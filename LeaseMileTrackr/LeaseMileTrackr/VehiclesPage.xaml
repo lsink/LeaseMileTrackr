@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeaseMileTrackr.VehiclesPage"
+             Title="Vehicles">
+
+    <ContentPage.Resources>
+        <!-- Implicit styles -->
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+"
+                     Clicked="OnVehicleAddedClicked" />
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="listView"
+              Margin="10"
+              ItemSelected="OnListViewItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                        <Label Text="{Binding Title}" TextColor="#0E547C" FontSize="23" VerticalTextAlignment="Center" LineBreakMode="NoWrap"/>
+                        <Label Text="{Binding CalculatedMiles, StringFormat='{0:N0} Miles'}" 
+                               HorizontalOptions="EndAndExpand"
+                               TextColor="#503026"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               LineBreakMode="WordWrap">
+                            <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="MarkerFelt-Thin" />
+                                <On Platform="Android" Value="Droid Sans Mono" />
+                                <On Platform="UWP" Value="Comic Sans MS" />
+                            </OnPlatform>
+                            </Label.FontFamily>
+                            </Label>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
